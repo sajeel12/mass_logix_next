@@ -52,16 +52,16 @@ export default function Hero() {
             className="mt-6 text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
           >
             We build{" "}
-            <span className="text-gradient">AI-powered software</span> that
-            <span className="mt-1 flex h-[1.15em] items-center overflow-hidden">
+            <span className="text-gradient">AI-powered software</span> that{" "}
+            <span className="relative mt-1 block min-h-[2.3em] sm:min-h-[1.2em]">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={rotating[idx]}
-                  initial={{ y: "0.7em", opacity: 0 }}
+                  initial={{ y: "0.5em", opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: "-0.7em", opacity: 0 }}
+                  exit={{ y: "-0.5em", opacity: 0 }}
                   transition={{ duration: 0.35 }}
-                  className="block text-lime-soft"
+                  className="block text-balance text-lime-soft"
                 >
                   {rotating[idx]}
                 </motion.span>
