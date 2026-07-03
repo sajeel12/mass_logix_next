@@ -1,0 +1,361 @@
+@import "tailwindcss";
+
+/* Enable class-based dark mode: `.dark` on <html> flips the theme. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------------ */
+/*  Theme palettes                                                     */
+/*  Light is the default (buyers are mostly non-technical); .dark      */
+/*  overrides the same runtime variables so every token swaps at once. */
+/* ------------------------------------------------------------------ */
+:root {
+  /* surfaces (light) */
+  --ml-ink: #ffffff; /* page background */
+  --ml-ink-2: #f4f6fa; /* footer / alt band */
+  --ml-surface: #ffffff; /* cards */
+  --ml-surface-2: #f1f4f9; /* insets, terminal chrome */
+  --ml-line: #e6e9f0; /* hairlines */
+  --ml-line-strong: #d3d8e2; /* stronger borders */
+
+  /* brand accents (shared across themes) */
+  --ml-lime: #dbff00;
+  --ml-lime-soft: #aacc00;
+  --ml-cyan: #16b8a0;
+  --ml-violet: #6b5cff;
+
+  /* text (light) */
+  --ml-fg: #0b0e16; /* near-black headings/body */
+  --ml-fg-dim: #4a5468; /* secondary text */
+  --ml-fg-muted: #7b869a; /* muted labels */
+
+  /* effects (light) */
+  --ml-grid-line: rgba(10, 14, 22, 0.05);
+  --ml-dot: rgba(10, 14, 22, 0.08);
+  --ml-card-sheen: rgba(10, 14, 22, 0.015);
+  --ml-gradient-1: #0b0e16; /* start of the display gradient text */
+  --ml-limetext-a: #7f9400; /* readable "lime" gradient on light */
+  --ml-limetext-b: #0b0e16;
+  --shadow-card: 0 24px 60px -34px rgba(20, 30, 60, 0.35);
+}
+
+.dark {
+  --ml-ink: #05060a;
+  --ml-ink-2: #0a0c14;
+  --ml-surface: #0d1018;
+  --ml-surface-2: #12151f;
+  --ml-line: #1c2130;
+  --ml-line-strong: #2a3040;
+
+  --ml-lime: #dbff00;
+  --ml-lime-soft: #b8d600;
+  --ml-cyan: #38f5d5;
+  --ml-violet: #8b7bff;
+
+  --ml-fg: #f4f6fb;
+  --ml-fg-dim: #a2acc4;
+  --ml-fg-muted: #6b7690;
+
+  --ml-grid-line: rgba(255, 255, 255, 0.04);
+  --ml-dot: rgba(255, 255, 255, 0.06);
+  --ml-card-sheen: rgba(255, 255, 255, 0.03);
+  --ml-gradient-1: #ffffff;
+  --ml-limetext-a: #dbff00;
+  --ml-limetext-b: #b8d600;
+  --shadow-card: 0 20px 60px -30px rgba(0, 0, 0, 0.9);
+}
+
+/* Map Tailwind color tokens onto the runtime theme variables. */
+@theme inline {
+  --color-ink: var(--ml-ink);
+  --color-ink-2: var(--ml-ink-2);
+  --color-surface: var(--ml-surface);
+  --color-surface-2: var(--ml-surface-2);
+  --color-line: var(--ml-line);
+  --color-line-strong: var(--ml-line-strong);
+
+  --color-lime: var(--ml-lime);
+  --color-lime-soft: var(--ml-lime-soft);
+  --color-cyan: var(--ml-cyan);
+  --color-violet: var(--ml-violet);
+
+  --color-fg: var(--ml-fg);
+  --color-fg-dim: var(--ml-fg-dim);
+  --color-fg-muted: var(--ml-fg-muted);
+
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --shadow-glow: 0 0 40px -8px rgba(219, 255, 0, 0.35);
+  --shadow-card: var(--shadow-card);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Base                                                               */
+/* ------------------------------------------------------------------ */
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+::selection {
+  background: var(--color-lime);
+  color: #000;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-line-strong);
+  border-radius: 999px;
+  border: 2px solid var(--color-ink);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-fg-muted);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Utilities                                                          */
+/* ------------------------------------------------------------------ */
+
+/* Fine engineering grid used behind sections */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--ml-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--ml-grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.bg-grid-fade {
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+.bg-dots {
+  background-image: radial-gradient(var(--ml-dot) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Gradient text — starts near-black on light, white on dark. */
+.text-gradient {
+  background: linear-gradient(120deg, var(--ml-gradient-1) 0%, var(--ml-lime-soft) 55%, var(--ml-cyan) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-lime {
+  background: linear-gradient(120deg, var(--ml-limetext-a) 0%, var(--ml-limetext-b) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hairline card border with subtle inner glow */
+.card-hairline {
+  position: relative;
+  background:
+    linear-gradient(180deg, var(--ml-card-sheen), transparent) padding-box,
+    var(--color-surface);
+  border: 1px solid var(--color-line);
+}
+
+/* Animated conic border on hover */
+.glow-border {
+  position: relative;
+  isolation: isolate;
+}
+.glow-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--angle, 0deg), transparent 0%, var(--color-lime) 15%, transparent 35%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+.glow-border:hover::before {
+  opacity: 1;
+  animation: spin-angle 4s linear infinite;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin-angle {
+  to {
+    --angle: 360deg;
+  }
+}
+
+/* Brand surface — the navbar pill and footer render on a deep near-black
+   backing in BOTH themes so the lime logo stays high-contrast and looks
+   intentional. Inside it we re-map the text/line tokens to their dark-theme
+   values so child elements (links, borders, buttons) read correctly. */
+.brand-surface {
+  --ml-fg: #f4f6fb;
+  --ml-fg-dim: #a2acc4;
+  --ml-fg-muted: #6b7690;
+  --ml-line: #1c2130;
+  --ml-line-strong: #2a3040;
+  --ml-surface: #12151f;
+  --ml-surface-2: #12151f;
+  --ml-lime-soft: #dbff00;
+  background-color: #080a10;
+  color: var(--ml-fg);
+  border-color: #23293a;
+}
+
+/* Lime chip — small eyebrow/badge pills. Bright lime text needs a dark
+   backing to be readable, so we pin a dark chip in BOTH themes. */
+.chip-lime {
+  background-color: #0b0e16;
+  border: 1px solid #23293a;
+  color: #dbff00;
+}
+.chip-lime .chip-dot {
+  background-color: #dbff00;
+  box-shadow: 0 0 10px 2px rgba(219, 255, 0, 0.6);
+}
+
+/* Icon tile — ensures the lime glyph stays legible in both themes.
+   Light: a dark chip so lime pops.  Dark: matches the page ink. */
+.icon-tile {
+  background: #0b0e16;
+  border-color: var(--color-line-strong);
+  color: var(--ml-lime);
+}
+.dark .icon-tile {
+  background: var(--ml-ink);
+}
+
+/* Terminal — stays dark in both themes (like a real code block). */
+.terminal-shell {
+  background: #0b0e16;
+  border: 1px solid #1c2130;
+}
+.terminal-bar {
+  background: #12151f;
+  border-bottom: 1px solid #1c2130;
+}
+.terminal-body {
+  background: #05060a;
+}
+.terminal-label {
+  color: #6b7690;
+}
+.term-fg {
+  color: #f4f6fb;
+}
+.term-dim {
+  color: #a2acc4;
+}
+.term-muted {
+  color: #6b7690;
+}
+.term-accent {
+  color: #dbff00;
+}
+
+/* Marquee */
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Blinking terminal cursor */
+.cursor-blink {
+  animation: blink 1.1s steps(1) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Slow float */
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+/* Ambient glow orbs */
+@keyframes drift-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(6%, 8%) scale(1.1);
+  }
+}
+@keyframes drift-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-8%, -6%) scale(1.05);
+  }
+}
+.orb-1 {
+  animation: drift-1 22s ease-in-out infinite;
+}
+.orb-2 {
+  animation: drift-2 26s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
