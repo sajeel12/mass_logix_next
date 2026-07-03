@@ -35,7 +35,7 @@ export default function Navbar() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="text-sm text-fg-dim transition-colors hover:text-fg"
+                className="text-sm font-medium text-white/90 transition-colors hover:text-lime"
               >
                 {l.label}
               </a>
@@ -79,7 +79,7 @@ export default function Navbar() {
                   <a
                     href={l.href}
                     onClick={() => setOpen(false)}
-                    className="block rounded-lg px-3 py-3 text-sm text-fg-dim transition-colors hover:bg-surface hover:text-fg"
+                    className="block rounded-lg px-3 py-3 text-sm font-medium text-white/90 transition-colors hover:bg-white/5 hover:text-lime"
                   >
                     {l.label}
                   </a>

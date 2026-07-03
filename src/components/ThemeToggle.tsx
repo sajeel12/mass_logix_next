@@ -44,7 +44,7 @@ export default function ThemeToggle() {
       onClick={toggle}
       aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
       title={`Switch to ${isDark ? "light" : "dark"} mode`}
-      className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-line-strong text-fg-dim transition-all hover:border-lime/50 hover:text-fg"
+      className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-line-strong text-white/85 transition-all hover:border-lime/50 hover:text-lime"
     >
       {/* Render a stable icon until mounted to avoid hydration mismatch */}
       {mounted && isDark ? (
