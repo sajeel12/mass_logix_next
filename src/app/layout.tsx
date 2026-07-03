@@ -15,7 +15,7 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
-const titleDefault = `${site.name} — Software Development & FBR e-Invoicing`;
+const titleDefault = `${site.name} — AI Software Development & FBR e-Invoicing`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -26,15 +26,17 @@ export const metadata: Metadata = {
   description: site.description,
   applicationName: site.name,
   keywords: [
+    "AI software development",
+    "AI chatbot development",
+    "AI automation agency",
+    "AI voice agents",
+    "custom AI solutions",
     "software development agency",
     "software house Pakistan",
     "FBR IRIS e-invoicing",
     "FBR digital invoicing integration",
-    "AI development",
-    "Next.js development",
     "web app development",
     "mobile app development",
-    "cloud engineering",
     "MassLogix",
   ],
   authors: [{ name: site.name, url: site.url }],

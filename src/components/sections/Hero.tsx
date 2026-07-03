@@ -7,18 +7,17 @@ import { marqueeTech, site } from "@/lib/site";
 import Terminal from "../Terminal";
 
 const rotating = [
-  "web apps",
-  "AI products",
-  "mobile apps",
-  "cloud platforms",
-  "Web3 systems",
+  "runs your business.",
+  "answers customers 24/7.",
+  "automates the busywork.",
+  "scales without limits.",
 ];
 
 export default function Hero() {
   const [idx, setIdx] = useState(0);
 
   useEffect(() => {
-    const t = setInterval(() => setIdx((i) => (i + 1) % rotating.length), 2600);
+    const t = setInterval(() => setIdx((i) => (i + 1) % rotating.length), 3000);
     return () => clearInterval(t);
   }, []);
 
@@ -52,8 +51,8 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.05 }}
             className="mt-6 text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
           >
-            We design &amp; engineer{" "}
-            <span className="text-gradient">production-grade</span>
+            We build{" "}
+            <span className="text-gradient">AI-powered software</span> that
             <span className="mt-1 flex h-[1.15em] items-center overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.span
@@ -76,9 +75,9 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-fg-dim"
           >
-            {site.name} is a senior engineering studio that takes ideas from
-            whiteboard to launch — clean architecture, real deadlines, and
-            software that scales.
+            {site.name} is an AI-first software studio. We build custom apps,
+            automations, and AI assistants that save you time, delight your
+            customers, and give you an edge — from idea to launch.
           </motion.p>
 
           <motion.div

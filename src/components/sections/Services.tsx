@@ -47,10 +47,22 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-              className="card-hairline glow-border group flex flex-col rounded-2xl p-6 transition-transform duration-300 hover:-translate-y-1"
+              className={`card-hairline glow-border group flex flex-col rounded-2xl p-6 transition-transform duration-300 hover:-translate-y-1 ${
+                s.featured
+                  ? "sm:col-span-2 lg:col-span-1 ring-1 ring-lime/40 shadow-glow"
+                  : ""
+              }`}
             >
-              <div className="icon-tile flex h-12 w-12 items-center justify-center rounded-xl border transition-colors group-hover:border-lime/40">
-                <Icon className="h-6 w-6" />
+              <div className="flex items-center justify-between">
+                <div className="icon-tile flex h-12 w-12 items-center justify-center rounded-xl border transition-colors group-hover:border-lime/40">
+                  <Icon className="h-6 w-6" />
+                </div>
+                {s.featured && (
+                  <span className="chip-lime inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider">
+                    <span className="chip-dot h-1.5 w-1.5 rounded-full" />
+                    Most requested
+                  </span>
+                )}
               </div>
               <h3 className="mt-5 text-xl font-semibold tracking-tight">
                 {s.title}

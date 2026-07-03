@@ -10,7 +10,7 @@ export const site = {
   url: "https://masslogix.com",
   tagline: "From idea to execution — we build what's next.",
   description:
-    "MassLogix is a software engineering studio building scalable, AI-native products across web, mobile, cloud, and Web3 — plus FBR IRIS e-invoicing for Pakistani businesses.",
+    "MassLogix is an AI-first software studio. We build AI chatbots, automation, and custom apps across web, mobile, and cloud — plus FBR IRIS e-invoicing for Pakistani businesses.",
   email: "masslogix@gmail.com",
   phone: "+92 321 1410122",
   phoneHref: "+923211410122",
@@ -25,19 +25,44 @@ export const site = {
 } as const;
 
 export const navLinks = [
+  { label: "AI", href: "#ai" },
   { label: "Services", href: "#services" },
   { label: "FBR e-Invoicing", href: "#fbr-iris" },
   { label: "Work", href: "#industries" },
-  { label: "Stack", href: "#technologies" },
   { label: "Process", href: "#process" },
 ] as const;
 
 export const stats = [
   { value: 20, suffix: "+", label: "Projects shipped" },
-  { value: 5, suffix: "+", label: "Clients across industries" },
+  { value: 15, suffix: "+", label: "AI features in production" },
   { value: 95, suffix: "%", label: "Client satisfaction" },
   { value: 40, suffix: "K+", label: "Engineering hours" },
 ] as const;
+
+export type Logo = {
+  name: string;
+  src: string;
+  width: number;
+  height: number;
+  href?: string;
+};
+
+/** Clients we've built for (shown under "Trusted by"). */
+export const clients: Logo[] = [
+  {
+    name: "theOlivepod",
+    src: "/logos/olivepod.png",
+    width: 874,
+    height: 183,
+    href: "https://theolivepod.com",
+  },
+];
+
+/** Payment / platform integrations we build with (not partnerships). */
+export const integrations: Logo[] = [
+  { name: "Stripe", src: "/logos/stripe.png", width: 307, height: 133 },
+  { name: "SumUp", src: "/logos/sumup.png", width: 468, height: 148 },
+];
 
 /** Business reassurances shown as a trust strip under the hero. */
 export const trustPoints = [
@@ -53,6 +78,7 @@ export type Service = {
   blurb: string;
   bullets: string[];
   icon: string; // lucide icon name
+  featured?: boolean; // renders larger / highlighted in the grid
 };
 
 export const services: Service[] = [
@@ -74,11 +100,12 @@ export const services: Service[] = [
   },
   {
     id: "ai-ml",
-    title: "AI / ML Engineering",
+    title: "AI That Works For You",
     blurb:
-      "Ship intelligent features — RAG, agents, and models wired into real products.",
-    bullets: ["LLM & RAG pipelines", "Agents & tooling", "MLOps"],
+      "Put AI to work in your business — automate the busywork, answer customers instantly, and make smarter decisions.",
+    bullets: ["AI chat & voice agents", "Document automation", "Predictions & insights"],
     icon: "BrainCircuit",
+    featured: true,
   },
   {
     id: "mobile",
@@ -200,6 +227,73 @@ export const solutions: Solution[] = [
       "✓ IRN 7A1C-… issued · QR generated",
     ],
   },
+];
+
+export type AiSolution = {
+  id: string;
+  title: string;
+  copy: string;
+  outcome: string; // the one-line business win
+  icon: string; // lucide icon name
+};
+
+/**
+ * AI offerings framed as business outcomes (not model jargon).
+ * MassLogix positions AI-first — this is the flagship capability.
+ */
+export const aiSolutions: AiSolution[] = [
+  {
+    id: "ai-agents",
+    title: "AI Chat & Support Agents",
+    copy: "A smart assistant that answers customer questions, qualifies leads, and books meetings on your website and WhatsApp.",
+    outcome: "Answers customers 24/7",
+    icon: "MessageSquareText",
+  },
+  {
+    id: "automation",
+    title: "Document & Workflow Automation",
+    copy: "AI reads invoices, forms, and emails, pulls out the data, and files it into your systems — no manual entry.",
+    outcome: "Cut hours of manual work",
+    icon: "FileStack",
+  },
+  {
+    id: "voice",
+    title: "AI Voice Agents",
+    copy: "AI that picks up calls, answers FAQs, takes bookings, and routes the important ones to your team.",
+    outcome: "Never miss a call",
+    icon: "PhoneCall",
+  },
+  {
+    id: "insights",
+    title: "Predictions & Insights",
+    copy: "Forecast sales and demand, spot fraud and anomalies, and turn your data into decisions you can act on.",
+    outcome: "Decide with data, not guesswork",
+    icon: "TrendingUp",
+  },
+  {
+    id: "search",
+    title: "Ask-Your-Data Assistant",
+    copy: "Chat with your own documents, contracts, and knowledge base — instant answers with sources, no digging.",
+    outcome: "Find any answer in seconds",
+    icon: "Sparkles",
+  },
+  {
+    id: "integrate",
+    title: "AI Inside Your Tools",
+    copy: "We wire modern AI (ChatGPT, Claude, and open models) into the software and workflows you already use.",
+    outcome: "Upgrade what you already have",
+    icon: "Plug",
+  },
+];
+
+/** Model/tooling names shown as a small credibility line under AI. */
+export const aiStack = [
+  "OpenAI GPT",
+  "Anthropic Claude",
+  "Llama",
+  "LangChain",
+  "Vector search",
+  "Whisper",
 ];
 
 export type Industry = {
