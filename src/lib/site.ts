@@ -12,8 +12,8 @@ export const site = {
   description:
     "MassLogix is an AI-first software studio. We build AI chatbots, automation, and custom apps across web, mobile, and cloud — plus FBR IRIS e-invoicing for Pakistani businesses.",
   email: "masslogix@gmail.com",
-  phone: "+92 321 1410122",
-  phoneHref: "+923211410122",
+  phone: "+92 316 4114230",
+  phoneHref: "+923164114230",
   calendly: "https://calendly.com/masslogixx/60min",
   /** Absolute URLs used in structured data / social cards. */
   logo: "/images/main.png", // square-ish brand mark, shown by Google in results
